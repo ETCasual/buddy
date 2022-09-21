@@ -94,7 +94,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="bg-black overflow-hidden">
-      <div className="bg-black h-screen w-[100%] flex flex-col gap-1 transform rotate-12 scale-125">
+      <div className="bg-black h-screen w-[100%] flex flex-col gap-1">
         <div ref={ref} className="keen-slider">
           {images.data.map((e) => (
             <BuddyImage src={e} key={e} />
