@@ -21,13 +21,13 @@ export const exampleRouter = createRouter()
       const client = new S3Client({
         region: "ap-southeast-1",
         credentials: {
-          accessKeyId: env.AWS_ACCESS_KEY,
-          secretAccessKey: env.AWS_SECRET_KEY,
+          accessKeyId: env.AWS_ACCESS_KEYID,
+          secretAccessKey: env.AWS_SECRET_KEYID,
         },
       });
 
       const command = new ListObjectsV2Command({
-        Bucket: env.AWS_BUCKET_ID,
+        Bucket: env.AWS_BUCKET_IDENTIFICATION,
         Prefix: "buddyImages",
       });
 
