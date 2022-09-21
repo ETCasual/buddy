@@ -9,6 +9,7 @@ export function useKeyPress({ targetKey }: UseKeyPressOptions): boolean {
 
   const downHandler = useCallback(
     ({ key }) => {
+      console.log("key:" + key);
       if (key === targetKey) {
         setKeyPressed(true);
       }
