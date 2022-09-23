@@ -7,3 +7,28 @@
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border-radius: 10px;
 }
+
+.shake {
+    animation: shake 5s cubic-bezier(.36,.07,.19,.97) both infinite;
+    /* transform: translate3d(0, 0, 0); */
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-15px, 0, 0) rotate(6deg);
+    }
+    
+    20%, 80% {
+      transform: translate3d(30px, 0, 0) rotate(-6deg);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-60px, 0, 0) rotate(12deg);
+    }
+  
+    40%, 60% {
+      transform: translate3d(60px, 0, 0) rotate(-12deg);
+    }
+  }

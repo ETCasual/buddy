@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { trpc } from "../utils/trpc";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -66,6 +66,8 @@ const Home: NextPage = () => {
   });
 
   const isPressed = useKeyPress({ targetKey: "s" });
+  const shakePressed = useKeyPress({ targetKey: "t" });
+  const [isShake, setIsShake] = useState<boolean>(true);
   const stopAnim = () => {
     iRef.current?.animator.stop();
     iRef2.current?.animator.stop();
@@ -74,8 +76,15 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (isPressed) stopAnim();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPressed]);
+  useEffect(() => {
+    if (shakePressed && isShake) setIsShake(false);
+    else if (shakePressed && !isShake) setIsShake(true);
+    console.log("Shake");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shakePressed]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -95,7 +104,11 @@ const Home: NextPage = () => {
   return (
     <div className="bg-[#40005e] overflow-hidden relative flex w-full">
       <div className="absolute z-[10] flex justify-center self-center items-center w-full h-full glass">
-        <img src="logo.png" alt="logo" className=" transform scale-75" />
+        <img
+          src="logo.png"
+          alt="logo"
+          className={`transform scale-75 ${isShake ? "shake" : ""}`}
+        />
       </div>
       <div className="bg-[#40005e] h-screen w-[100%] flex flex-col gap-1 transform rotate-12 scale-125">
         <div ref={ref} className="keen-slider">
